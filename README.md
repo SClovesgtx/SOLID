@@ -9,6 +9,11 @@
 
 * **solid_3.py**: aqui corrigimos a violação do princípio *O* atraves da abstração do método *pay* e deixamos isso aberto para futuros processadores de pagamento (que serão subclasses), protegendo (fechando) PaymentProcessor de mudanças. Mas desta vez estamos violando o princípio de **Liskov Substitution**, que diz que devemos ser capazes de substituir a superclasse por uma de suas subclasses sem prejudicar o correto funcionamento do programa. Note que a subclasse PayPalPaymentProcessor não usa *security_code* mas *e-mail*. Caso alguém no futuro, por algum motivo, estivesse usando *PaymentProcessor* em algum outro ponto do programa e precise colocar *PayPalPaymentProcessor* no lugar, então o programa não funcionará corretamente.
 
+* **solid_4.py**: resolvemos o problema da violação do princípio *L* quando removemos o *security_code* como parâmetro da superclass *PaymentProcessor* e deixamos isso como inicializador de suas subclasses.
+
+* **solid_5.py**: neste aquivo adicionamos o método *auth_sms* (autenticação de dois fatores) para exemplificar o quarto princípio, chamado de **Interface Segregation** que diz para evitarmos ter interfaces muito amplas e correr o risco de uma das interfaces não serem usadas por um dos atores, ou seja, este princípio incentiva ter várias interfaces com propósitos muito bem definidos e específicos do que uma de uso geral e muito genérica. Neste arquivo temos uma violação deste princípio dado que definimos a interface *auth_sms* na superclasse supondo que todas as suas subclasses usariam este método de autenticação, mas o método de pagamento com crédito não usa essa interface (isso também é uma violação do princípio *L* dado que não conseguimos substituir a superclasse por esta sua subclasse).
+
+* **solid_6.py**: aqui resolvemos a infração do princípio *I* criando uma interface mais específica chamada *PaymentProcessor_SMS* que é herdada pelas classes de pagamento que precisam da autenticação de dois fatores, já a classe de pagamento a crédito continua herdando apenas a superclasse *PaymentProcessor* e não precisa mais se preocupar em implementar um método desnecessário para *auth_sms*.
 
 
 
