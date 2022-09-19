@@ -15,5 +15,7 @@
 
 * **solid_6.py**: aqui resolvemos a infração do princípio *I* criando uma interface mais específica chamada *PaymentProcessor_SMS* que é herdada pelas classes de pagamento que precisam da autenticação de dois fatores, já a classe de pagamento a crédito continua herdando apenas a superclasse *PaymentProcessor* e não precisa mais se preocupar em implementar um método desnecessário para *auth_sms*.
 
+* **solid_7.py**: podemos resolver a infração do princípio *I* de outra forma. Ao invés de usar herança de classe, como fizemos no *solid_6.py*, podemos usar composição. O método de autenticação de dois fatores enviada pelo SMS pode ser uma classe e esta mesma classe pode ser uma parte da classe de pagamento. Fizemos isso aqui criando a classe *SMSAuth*.
+
 
 
